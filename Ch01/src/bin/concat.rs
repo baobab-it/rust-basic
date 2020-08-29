@@ -1,4 +1,4 @@
- /*
+/*
 
 Конкатенація рядків
 
@@ -8,8 +8,16 @@ fn main() {
     by_moving(); // Віддаємо перевагу цьому способу, використовує менше памяті, діє прямолінійно
     by_cloning();// коли потрібно залишити дані недоторканими, проте може використовувати багато памяті
     by_mutating(); // варіант, який продуктивно працює як в першому випадку, але мутує змінну. Використовуємо у випадку великої потреби мутації даних чи в представлені стану в дуже малому і керованому контексті.
-    let hello_world = "Hello world!".to_string();
-    println!("index first word {}", first_word(&hello_world)); // виводимо перше слово
+    
+    let my_string = String::from("hello world");
+    // first_word works on slices of `String`s
+    let word = first_word(&my_string[..]);
+    let my_string_literal = "hello world";
+    // first_word works on slices of string literals
+    let word = first_word(&my_string_literal[..]);
+    // Because string literals *are* string slices already,
+    // this works too, without the slice syntax!
+    let word = first_word(my_string_literal);
 }
 
 fn by_moving() {
@@ -45,7 +53,7 @@ fn by_mutating() {
     println!("{}", hello); // Друкуємо "hello world!"
 }
 
-fn first_word(s: &String) -> &str {
+fn first_word(s: &str) -> &str {
     let bytes = s.as_bytes(); // отримуємо масив байтів (УВАГА використовуємо тільки для Ascii кодувань)
 
     for (i, &item) in bytes.iter().enumerate() { // enumerate обгортає ітератор і викодить кортеж (index, &item)
