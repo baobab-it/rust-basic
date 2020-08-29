@@ -1,4 +1,4 @@
-﻿/*
+ /*
 
 Конкатенація рядків
 
@@ -9,7 +9,7 @@ fn main() {
     by_cloning();// коли потрібно залишити дані недоторканими, проте може використовувати багато памяті
     by_mutating(); // варіант, який продуктивно працює як в першому випадку, але мутує змінну. Використовуємо у випадку великої потреби мутації даних чи в представлені стану в дуже малому і керованому контексті.
     let hello_world = "Hello world!".to_string();
-    println!("index first word {}", first_word(&hello_world)); // виводимо позицію першого слова
+    println!("index first word {}", first_word(&hello_world)); // виводимо перше слово
 }
 
 fn by_moving() {
@@ -45,13 +45,13 @@ fn by_mutating() {
     println!("{}", hello); // Друкуємо "hello world!"
 }
 
-fn first_word(s: &String) -> usize {
+fn first_word(s: &String) -> &str {
     let bytes = s.as_bytes(); // отримуємо масив байтів (УВАГА використовуємо тільки для Ascii кодувань)
 
     for (i, &item) in bytes.iter().enumerate() { // enumerate обгортає ітератор і викодить кортеж (index, &item)
         if item == b' ' {
-            return i;
+            return &s[..i];
         }
     }
-    s.len()
+    &s[..]
 }
