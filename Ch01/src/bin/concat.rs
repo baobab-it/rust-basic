@@ -46,7 +46,7 @@ fn by_mutating() {
 }
 
 fn first_word(s: &String) -> usize {
-    let bytes = s.as_bytes(); // отримуємо масив байтів (УВАГА використовуємо тільки для Anscii кодувань)
+    let bytes = s.as_bytes(); // отримуємо масив байтів (УВАГА використовуємо тільки для Ascii кодувань)
 
     for (i, &item) in bytes.iter().enumerate() { // enumerate обгортає ітератор і викодить кортеж (index, &item)
         if item == b' ' {
