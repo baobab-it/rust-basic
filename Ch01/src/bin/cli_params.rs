@@ -1,31 +1,32 @@
 use std::env;
 
 fn main() {
-    // env::args returns an iterator over the parameters
-    println!("Got following parameters: ");
+    // env::args повертає ітератор параметрів
+    println!("Отримуємо наступні параметри: ");
     for arg in env::args() {
         println!("- {}", arg);
     }
 
-    // We can access specific parameters using the iterator API
+    // Доступ до певних параметрів, використовуючи ітератор API
     let mut args = env::args();
     if let Some(arg) = args.nth(0) {
-        println!("The path to this program is: {}", arg);
+        println!("Шлях до цієї програми: {}", arg);
     }
     if let Some(arg) = args.nth(1) {
-        println!("The first parameter is: {}", arg);
+        println!("Периший параметр: {}", arg);
     }
     if let Some(arg) = args.nth(2) {
-        println!("The second parameter is: {}", arg);
+        println!("Другий параметр: {}", arg);
     }
 
-    // Or as a vector
+    // Чи як вектор
     let args = env::args().collect::<Vec<_>>();
-    println!("The path to this program is: {}", args[0]);
+    println!("Шлях до цієї програми: {}", args[0]);
+    
     if args.len() > 1 {
-        println!("The first parameter is: {}", args[1]);
+        println!("Перший параметр: {}", args[1]);
     }
     if args.len() > 2 {
-        println!("The second parameter is: {}", args[2]);
+        println!("Другий параметр: {}", args[2]);
     }
 }

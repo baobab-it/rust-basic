@@ -1,6 +1,8 @@
 extern crate rand;
 
 fn main() {
+
+
     // random_num1 will be any integer between
     // std::i32::MIN and std::i32::MAX
     let random_num1 = rand::random::<i32>();
@@ -38,6 +40,7 @@ fn main() {
     // use cases. If you require a particular distribution,
     // you specify it when creating the generator:
     let mut chacha_rng = rand::ChaChaRng::new_unseeded();
+    //let mut chacha_rng = rand::SeedableRng::random_chacha_num<i32>();
     let random_chacha_num = chacha_rng.gen::<i32>();
     println!("random_chacha_num: {}", random_chacha_num);
 }

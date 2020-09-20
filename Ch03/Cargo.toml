@@ -2,8 +2,15 @@
 authors = ["Jan Nils Ferner <jn_ferner@hotmail.de>"]
 name = "chapter_three"
 version = "0.1.0"
+
 [dependencies]
 byteorder = "1.1.0"
 flate2 = "0.2.20"
 glob = "0.2.11"
 walkdir = "2.0.1"
+csv = "1.0.0-beta.5"
+serde = "1.0.24"
+serde_derive = "1.0.24"
+serde_json = "1.0.8"
+toml = "0.4.5"
+

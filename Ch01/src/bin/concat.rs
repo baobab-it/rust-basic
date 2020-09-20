@@ -1,7 +1,5 @@
-/*
-
-Конкатенація рядків
-
+/**
+ * Конкатенація рядків
 */
 
 fn main() {
@@ -10,14 +8,14 @@ fn main() {
     by_mutating(); // варіант, який продуктивно працює як в першому випадку, але мутує змінну. Використовуємо у випадку великої потреби мутації даних чи в представлені стану в дуже малому і керованому контексті.
     
     let my_string = String::from("hello world");
-    // first_word works on slices of `String`s
-    let word = first_word(&my_string[..]);
+    // first_word працює на зрізі `String`
+    let _word = first_word(&my_string[..]);
     let my_string_literal = "hello world";
-    // first_word works on slices of string literals
-    let word = first_word(&my_string_literal[..]);
-    // Because string literals *are* string slices already,
-    // this works too, without the slice syntax!
-    let word = first_word(my_string_literal);
+    // first_word працює на зрізі літералів string
+    let _word = first_word(&my_string_literal[..]);
+    // Оскільки літерали string вже є зрізом string,
+    // це також працює без синтаксису зрізу!
+    let _word = first_word(my_string_literal);
 }
 
 fn by_moving() {
@@ -26,9 +24,9 @@ fn by_moving() {
 
     // Переміщуємо hello до нової змінної
     let hello_world = hello + world;
-    // Hello НЕ МОЖЕ більше використовуватись
-    //println!("{}", hello);// panic
-    println!("{}", world);
+    // hello НЕ МОЖЕ більше використовуватись
+    //println!("{}", hello); // panic
+    println!("{}", world); // -> "hello"
     println!("{}", hello_world); // -> "hello world!"
 }
 
@@ -38,7 +36,7 @@ fn by_cloning() {
 
     // Створюємо копію hello і переміщуємо в нову змінну
     let hello_world = hello.clone() + world;
-    // Hello може далі використовуватись
+    // hello може далі використовуватись
     println!("{}", hello_world); // Друкуємо "hello world!"
 }
 
@@ -56,7 +54,7 @@ fn by_mutating() {
 fn first_word(s: &str) -> &str {
     let bytes = s.as_bytes(); // отримуємо масив байтів (УВАГА використовуємо тільки для Ascii кодувань)
 
-    for (i, &item) in bytes.iter().enumerate() { // enumerate обгортає ітератор і викодить кортеж (index, &item)
+    for (i, &item) in bytes.iter().enumerate() { // enumerate обгортає ітератор в кортеж (index, &item)
         if item == b' ' {
             return &s[..i];
         }

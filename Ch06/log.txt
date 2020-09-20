@@ -1,3 +1,0 @@
-INFO 1520204232 at custom_logger: A lightning strikes a body
-WARN 1520204232 at custom_logger: It's moving
-ERROR 1520204232 at custom_logger: It's alive!

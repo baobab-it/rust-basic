@@ -1,5 +1,9 @@
+/**
+ * Використання шаблону Будівник
+ */
+
 fn main() {
-    // We can easily create different configurations
+    // Можна легко створити різні конфігурації
     let normal_burger = BurgerBuilder::new().build();
     let cheese_burger = BurgerBuilder::new().cheese(true).salad(false).build();
     let veggie_bigmac = BurgerBuilder::new().vegetarian(true).patty_count(2).build();
@@ -14,14 +18,13 @@ fn main() {
         veggie_bigmac.print();
     }
 
-    // Our builder can perform a check for
-    // invalid configurations
+    // Наший будівельник може виконувати перевірку дійсних конфігурацій
     let invalid_burger = BurgerBuilder::new().vegetarian(true).bacon(true).build();
     if let Err(error) = invalid_burger {
         println!("Failed to print burger: {}", error);
     }
 
-    // If we omit the last step, we can reuse our builder
+    // Якщо пропустимо останній крок, ми можемо повторно використовувати Будівника
     let cheese_burger_builder = BurgerBuilder::new().cheese(true);
     for i in 1..10 {
         let cheese_burger = cheese_burger_builder.build();
@@ -39,6 +42,7 @@ struct Burger {
     bacon: bool,
     salad: bool,
 }
+
 impl Burger {
     // This method is just here for illustrative purposes
     fn print(&self) {
@@ -69,8 +73,7 @@ struct BurgerBuilder {
     salad: bool,
 }
 impl BurgerBuilder {
-    // in the constructor, we can specify
-    // the standard values
+    // в конструкторі вказуємо стандартні значення
     fn new() -> Self {
         BurgerBuilder {
             patty_count: 1,
@@ -81,8 +84,7 @@ impl BurgerBuilder {
         }
     }
 
-    // Now we have to define a method for every
-    // configurable value
+    // Визначаємо метод для кожного конфігурованого значення
     fn patty_count(mut self, val: i32) -> Self {
         self.patty_count = val;
         self
@@ -105,7 +107,7 @@ impl BurgerBuilder {
         self
     }
 
-    // The final method actually constructs our object
+    // фінальний метод конструює об'єкт
     fn build(&self) -> Result<Burger, String> {
         let burger = Burger {
             patty_count: self.patty_count,
@@ -114,7 +116,7 @@ impl BurgerBuilder {
             bacon: self.bacon,
             salad: self.salad,
         };
-        // Check for invalid configuration
+        // Перевірка для недійсної конфігурації
         if burger.vegetarian && burger.bacon {
             Err("Sorry, but we don't server vegetarian bacon yet".to_string())
         } else {
