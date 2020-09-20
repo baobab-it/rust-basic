@@ -167,7 +167,7 @@ fn main() {
     println!("=======");
     
     println!(">>> Заповнювач _");
-    // Коли потрібні варіанти оброблені решту можна обробити в 
+    // Коли потрібні варіанти оброблені, решту варіантів можна обробити в 
     // одному рукаві, використовуючи заповнювач _
     let some_u8_value = 0u8;
     match some_u8_value {
@@ -177,4 +177,32 @@ fn main() {
         7 => println!("seven"),
         _ => (),
     }
+
+    println!(">>> Використання конструкції if let");
+    let some_u8_value = Some(0u8);
+    // Конструкція if let дозволяє викорисовувати один варіант та відкинути всі інші
+    // Тобто конструкція виступає в ролі синтаксичного цукру, для зменшення кількості коду
+    match some_u8_value {
+        Some(3) => println!("three"),
+        _ => (),
+    }
+    // Проте ігноруючи всі варіанти ми втрачаємо повну перевірку, і такий варіант є компромісом
+    // між коротким кодом і обмежною перевіркою варіантів
+    if let Some(3) = some_u8_value {
+        println!("three");
+    }
+    // Також можна використовувати else для обробки всіх інших варіантів (аналогічно _=>())
+    let mut count = 0;
+    let coin = Coin::Quarter(UsState::Alaska);
+    match coin {
+        Coin::Quarter(state) => println!("State quarter from {:?}!", &state),
+        _ => count +=1, 
+    };
+    let coin = Coin::Quarter(UsState::Alaska);
+    if let Coin::Quarter(state) = coin {
+        println!("State quarter from {:?}!", state);
+    } else {
+        count += 1;
+    }
+    println!("{}", count);
 }

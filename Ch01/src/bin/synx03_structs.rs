@@ -45,7 +45,7 @@ fn main() {
             sign_in_count: 1,
         }
     }
-    // приклад створення екземпляра структури з іншого екземпляра стуктрури
+    // приклад створення екземпляра структури з іншого екземпляра структури
     let user2 = User {
         email: String::from("another@example.com"),
         username: String::from("anotherusername567"),
@@ -54,7 +54,7 @@ fn main() {
     };
     println!("{:?}", user2);
     // приклад створення екземпляра структури з використанням полів, які
-    // не вказані з іншого екземпляра структури
+    // використовуються в іншому екземплярі структури
     let user2 = User {
         email: String::from("another@example.com"),
         username: String::from("anotherusername567"),
@@ -139,7 +139,7 @@ fn main() {
     }
     
     println!("=======");
-    // Покращимо функцію area, логічно приєднавши його до структури
+    // Покращимо функцію area, логічно приєднавши її до структури
     impl Rectangle {
         fn area(&self) -> u32 {
             self.width * self.height
