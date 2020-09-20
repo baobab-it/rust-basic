@@ -58,6 +58,16 @@ fn main() {
     let second_num = nums.remove(1);
     println!("Видаляємо {} з {:?}", second_num, nums);
 
+    // Зміна значень елементів вектору
+    let mut v = vec![100, 32, 57];
+    println!("Значення елементів вектору {:?}", v);
+    for i in &mut v {
+        print!("{} -> ", i);
+        *i += 50;
+        println!("{}", i);
+    }
+    println!("Значення елементів після зміни вектору {:?}", v);
+
     // Фільтруємо вектор на місці
     let mut names = vec!["Арон", "Фелісія", "Алекс", "Даніель"];
     // Залишаємо імена, що починаються на 'A'
@@ -150,4 +160,27 @@ fn main() {
     let second_num = nums.swap_remove(1);
     // Це зміннює порядок, але працює в O(1)
     println!("Видаляємо {} з {:?}", second_num, nums);
+
+    // Визначення enum для зберігання різних типів даних
+    #[derive(Debug)]
+    enum SpreadsheetCell {
+        Int(i32),
+        Float(f64),
+        Text(String),
+    }
+
+    let row = vec![
+        SpreadsheetCell::Int(3),
+        SpreadsheetCell::Text(String::from("blue")),
+        SpreadsheetCell::Float(10.12),
+    ];
+    println!("Вектор з збереженими значеннями enum: {:?}", row);
+
+    for i in &row {
+        match i {
+            SpreadsheetCell::Int(int) => println!("{}", int),
+            SpreadsheetCell::Text(str) => println!("{}", str),
+            SpreadsheetCell::Float(fl) => println!("{}", fl),
+        }
+    }
 }
