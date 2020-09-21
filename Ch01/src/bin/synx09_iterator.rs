@@ -1,29 +1,29 @@
 fn main() {
     let names = vec!["Joe", "Miranda", "Alice"];
-    // Iterators can be accessed in many ways.
-    // Nearly all collections implement .iter() for this purpose
+    // Ітератори можуть бути доступні багатьма способами.
+    // Всі колекції реалізують .iter() для цієї мети
     let mut iter = names.iter();
-    // A string itself is not iterable, but its characters are
+    // Рядки самі по собі не ітеруються, але символи можуть
     let mut alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".chars();
-    // Ranges are also (limited) iterators
+    // Діапазони також (обмежено) ітеруються
     let nums = 0..10;
-    // You can even create infinite iterators!
+    // Ви можете навіть створити безкінечні ітератори!
     let all_nums = 0..;
 
-    // As the name says, you can iterate over iterators
-    // This will consume the iterator
+    // Як каже ім'я, ви можете проводити ітерацію над ітераторами
+    // Це буде споживати ітератор
     for num in nums {
         print!("{} ", num);
     }
-    // nums is no longer usable
+    // nums більше не використовується
     println!();
 
-    // Get the index of the current item
+    // Отримуємо індекс поточного елементу
     for (index, letter) in "abc".chars().enumerate() {
         println!("#{}. letter in the alphabet: {}", index + 1, letter);
     }
 
-    // going through an iterator, step by step
+    // проходимо через ітератор, крок за кроком
     if let Some(name) = iter.next() {
         println!("First name: {}", name);
     }
@@ -37,15 +37,15 @@ fn main() {
         println!("No names left");
     }
 
-    // Arbitrary access to an item in the iterator
+    // Довільний доступ до елемента в ітераторі
     let letter = alphabet.nth(3);
     if let Some(letter) = letter {
         println!("the fourth letter in the alphabet is: {}", letter);
     }
-    // This works by consuming all items up to a point
+    //  Це працює, споживаючи всі елементи до певної точки
     let current_first = alphabet.nth(0);
     if let Some(current_first) = current_first {
-        // This will NOT print 'A'
+        // Це НЕ надрукує 'A'
         println!(
             "The first item in the iterator is currently: {}",
             current_first
@@ -59,8 +59,7 @@ fn main() {
         );
     }
 
-    // Accessing the last item; This will
-    // consume the entire iterator
+    // Доступ до останнього елемента; Це споживе весь ітератор
     let last_letter = alphabet.last();
     if let Some(last_letter) = last_letter {
         println!("The last letter of the alphabet is: {}", last_letter);

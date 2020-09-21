@@ -1,16 +1,15 @@
 use std::collections::HashSet;
 
 fn main() {
-    // Most of the interface of HashSet
-    // is the same as HashMap, just without
-    // the methods that handle values
+    // Більшість інтерфейсу HashSet аналогічний HashMap,
+    // тільки без методів, що обробляють значення
     let mut books = HashSet::new();
     books.insert("Harry Potter and the Philosopher's Stone");
     books.insert("The Name of the Wind");
     books.insert("A Game of Thrones");
 
-    // A HashSet will ignore duplicate entries
-    // but will return if an entry is new or not
+    // HashSet ігнорує дублікати сутностей, але повертає,
+    // якщо сутність є новою чи ні
     let is_new = books.insert("The Lies of Locke Lamora");
     if is_new {
         println!("We've just added a new book!");
@@ -21,12 +20,12 @@ fn main() {
         println!("Sorry, we already had that book in store");
     }
 
-    // Check if it contains a key
+    // Перевіряємо чи колекція містить ключ
     if !books.contains("The Doors of Stone") {
         println!("We sadly don't have that book yet");
     }
 
-    // Remove an entry
+    // Видаляємо сутність
     let was_removed = books.remove("The Darkness that comes before");
     if !was_removed {
         println!("Couldn't remove book; We didn't have it to begin with");
@@ -36,14 +35,14 @@ fn main() {
         println!("Oops, we lost a book");
     }
 
-    // Compare two HashSets
+    // Порівнюємо два HashSets
 
     let one_to_five: HashSet<_> = (1..6).collect();
     let five_to_ten: HashSet<_> = (5..11).collect();
     let one_to_ten: HashSet<_> = (1..11).collect();
     let three_to_eight: HashSet<_> = (3..9).collect();
 
-    // Check if two HashSets have no elements in common
+    // Перевіряємо чи два HashSets немають загальних елементів
     let is_disjoint = one_to_five.is_disjoint(&five_to_ten);
     println!(
         "is {:?} disjoint from {:?}?: {}",
@@ -59,7 +58,7 @@ fn main() {
         is_disjoint
     );
 
-    // Check if a HashSet is fully contained in another
+    // Перевіряємо, якщо HashSet повністю міститься в іншому
     let is_subset = one_to_five.is_subset(&five_to_ten);
     println!(
         "is {:?} a subset of {:?}?: {}",
@@ -75,7 +74,7 @@ fn main() {
         is_subset
     );
 
-    // Check if a HashSet fully contains another
+    // Переіряємо, якщо HashSet повністю містить інший
     let is_superset = three_to_eight.is_superset(&five_to_ten);
     println!(
         "is {:?} a superset of {:?}?: {}",
@@ -91,10 +90,9 @@ fn main() {
         is_superset
     );
 
-    // Join two HashSets in various ways
+    // З'єднуємо два HashSets різними способами
 
-    // Get the values that are in the first HashSet
-    // but not in the second
+    // Отримуємо значення, що містяться в першому HashSet, але немає в другому
     let difference = one_to_five.difference(&three_to_eight);
     println!(
         "The difference between {:?} and {:?} is {:?}",
@@ -103,7 +101,7 @@ fn main() {
         difference
     );
 
-    // Get the values that are in either HashSets, but not in both
+    // Отримуємо значення, що є в кожному HashSets, але не в обох
     let symmetric_difference = one_to_five.symmetric_difference(&three_to_eight);
     println!(
         "The symmetric difference between {:?} and {:?} is {:?}",
@@ -112,7 +110,7 @@ fn main() {
         symmetric_difference
     );
 
-    // Get the values that are in both HashSets
+    // Отримуємо значення, що є в обох HashSets
     let intersection = one_to_five.intersection(&three_to_eight);
     println!(
         "The intersection difference between {:?} and {:?} is {:?}",
@@ -121,7 +119,7 @@ fn main() {
         intersection
     );
 
-    // Get all values in both HashSets
+    // Отримуємо всі значення, що є в обох HashSets
     let union = one_to_five.union(&three_to_eight);
     println!(
         "The union difference between {:?} and {:?} is {:?}",
