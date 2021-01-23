@@ -5,9 +5,9 @@ version = "0.1.0"
 authors = ["You <you@example.com>"]
 
 [dependencies]
-
 rand = "0.3.14"
-# mandelbrot
 num = "0.1.34"
 image = "0.13.0"
 rayon = "0.4.0"
+crossbeam = "0.2.9"
+atomic_chunks_mut = { git = "https://github.com/jimblandy/atomic-chunks-mut.git" }

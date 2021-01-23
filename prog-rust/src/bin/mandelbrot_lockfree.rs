@@ -1,3 +1,4 @@
+extern crate num;
 use num::Complex;
 
 /// Try to determine if `c` is in the Mandelbrot set, using at most `limit`
@@ -126,6 +127,7 @@ fn render(pixels: &mut [u8],
     }
 }
 
+extern crate image;
 use image::ColorType;
 use image::png::PNGEncoder;
 use std::fs::File;
@@ -145,6 +147,7 @@ fn write_image(filename: &str, pixels: &[u8], bounds: (usize, usize))
     Ok(())
 }
 
+extern crate atomic_chunks_mut;
 use atomic_chunks_mut::AtomicChunksMut;
 use std::io::Write;
 

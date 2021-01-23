@@ -1,3 +1,4 @@
+extern crate num;
 use num::Complex;
 
 /// Try to determine if `c` is in the Mandelbrot set, using at most `limit`
@@ -126,6 +127,7 @@ fn render(pixels: &mut [u8],
     }
 }
 
+extern crate image;
 use image::ColorType;
 use image::png::PNGEncoder;
 use std::fs::File;

@@ -1,3 +1,5 @@
+extern crate num;
+extern crate rayon;
 use num::Complex;
 use rayon::prelude::*;
 
@@ -127,6 +129,7 @@ fn render(pixels: &mut [u8],
     }
 }
 
+extern crate image;
 use image::ColorType;
 use image::png::PNGEncoder;
 use std::fs::File;
