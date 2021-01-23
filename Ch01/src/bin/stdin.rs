@@ -15,6 +15,7 @@ fn main() {
         "Hello, {} year old human named {} {}!",
         age, forename, surname
     );
+    let _t = "string".to_string();
 }
 
 fn print_single_line(text: &str) {
